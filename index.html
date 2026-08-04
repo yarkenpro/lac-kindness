@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kindness · Small Acts, Big Ripples</title>
+<style>
+  :root {
+    --bg: #fff7f2;
+    --bg2: #ffe9ef;
+    --ink: #3a2b33;
+    --rose: #ff7597;
+    --peach: #ffb08a;
+    --lilac: #b39ddb;
+    --mint: #8fd6b4;
+    --card: rgba(255,255,255,0.72);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background: linear-gradient(135deg, var(--bg), var(--bg2));
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* Floating background hearts */
+  .hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .heart {
+    position: absolute;
+    bottom: -40px;
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: float 12s linear infinite;
+  }
+  @keyframes float {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.7; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* Hero */
+  header {
+    position: relative;
+    z-index: 1;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  header h1 {
+    font-size: clamp(2.6rem, 8vw, 5.5rem);
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--rose), var(--peach), var(--lilac));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 6s linear infinite, popIn 1s ease both;
+  }
+  @keyframes shimmer { to { background-position: 200% center; } }
+  @keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+  header p {
+    margin-top: 1rem;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    max-width: 600px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.4s both;
+  }
+  .cta {
+    margin-top: 2rem;
+    padding: 0.9rem 2.2rem;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--rose), var(--peach));
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(255,117,151,0.4);
+    animation: fadeUp 1s ease 0.7s both, pulse 2.5s ease-in-out 1.7s infinite;
+    transition: transform 0.2s;
+  }
+  .cta:hover { transform: translateY(-3px) scale(1.05); }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 8px 24px rgba(255,117,151,0.4); }
+    50% { box-shadow: 0 8px 34px rgba(255,117,151,0.7); }
+  }
+  @keyframes fadeUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+  .scroll-hint { margin-top: 3rem; font-size: 2rem; animation: bounce 2s infinite; }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(12px); }
+  }
+
+  /* Sections */
+  section { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 5rem 1.5rem; }
+  .section-title {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: var(--rose);
+  }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+  .reveal.show { opacity: 1; transform: translateY(0); }
+
+  /* Cards */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.5rem; }
+  .card {
+    background: var(--card);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 1.8rem;
+    box-shadow: 0 10px 30px rgba(180,120,140,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(180,120,140,0.28); }
+  .card .emoji { font-size: 2.5rem; display: block; margin-bottom: 0.7rem; }
+  .card h3 { margin-bottom: 0.5rem; }
+
+  /* Quote */
+  .quote {
+    text-align: center;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-style: italic;
+    max-width: 720px;
+    margin: 0 auto;
+    color: var(--ink);
+  }
+  .quote span { display: block; margin-top: 1rem; font-size: 1rem; font-style: normal; opacity: 0.7; }
+
+  /* Pledge */
+  .pledge { text-align: center; }
+  .pledge-btn {
+    margin-top: 1.5rem;
+    padding: 0.9rem 2rem;
+    border: 2px solid var(--rose);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--rose);
+    font-weight: 700;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .pledge-btn:hover { background: var(--rose); color: white; }
+  #pledge-count { font-weight: 800; color: var(--rose); }
+
+  footer { text-align: center; padding: 3rem 1rem 6rem; z-index: 1; position: relative; opacity: 0.7; }
+
+  /* Watermark */
+  .watermark {
+    position: fixed;
+    bottom: 14px;
+    right: 16px;
+    z-index: 999;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(90deg, var(--rose), var(--lilac));
+    padding: 6px 14px;
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    letter-spacing: 0.02em;
+    animation: wmglow 3s ease-in-out infinite;
+  }
+  @keyframes wmglow {
+    0%,100% { box-shadow: 0 4px 14px rgba(255,117,151,0.4); }
+    50% { box-shadow: 0 4px 22px rgba(179,157,219,0.7); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<header>
+  <h1>Kindness</h1>
+  <p>Small acts, big ripples. A little compassion can change someone's entire day &mdash; maybe even their whole life.</p>
+  <button class="cta" onclick="document.getElementById('acts').scrollIntoView()">Spread Some Kindness</button>
+  <div class="scroll-hint">&#8595;</div>
+</header>
+
+<section id="why" class="reveal">
+  <h2 class="section-title">Why Kindness Matters</h2>
+  <p class="quote">
+    Kindness costs nothing, yet it's worth everything. It lowers stress, builds connection, and quietly makes the world softer for everyone in it.
+  </p>
+</section>
+
+<section id="acts" class="reveal">
+  <h2 class="section-title">Simple Acts You Can Do Today</h2>
+  <div class="grid">
+    <div class="card"><span class="emoji">&#128075;</span><h3>Say Hello</h3><p>Greet a stranger with a genuine smile. Connection starts with acknowledgement.</p></div>
+    <div class="card"><span class="emoji">&#9749;</span><h3>Buy a Coffee</h3><p>Pay it forward for the person behind you in line.</p></div>
+    <div class="card"><span class="emoji">&#128172;</span><h3>Give a Compliment</h3><p>Notice something good and say it out loud. Words carry weight.</p></div>
+    <div class="card"><span class="emoji">&#9993;</span><h3>Check In</h3><p>Text a friend you haven't spoken to in a while. Just to say you care.</p></div>
+    <div class="card"><span class="emoji">&#128218;</span><h3>Share Knowledge</h3><p>Teach someone something you know. Patience is a gift.</p></div>
+    <div class="card"><span class="emoji">&#127793;</span><h3>Help a Neighbor</h3><p>Carry a bag, hold a door, offer a hand. Small effort, big meaning.</p></div>
+  </div>
+</section>
+
+<section id="quote" class="reveal">
+  <p class="quote">
+    &ldquo;No act of kindness, no matter how small, is ever wasted.&rdquo;
+    <span>&mdash; Aesop</span>
+  </p>
+</section>
+
+<section id="pledge" class="reveal pledge">
+  <h2 class="section-title">Take the Kindness Pledge</h2>
+  <p>Promise to do one kind thing today. Join <span id="pledge-count">1,024</span> others who already have.</p>
+  <button class="pledge-btn" id="pledgeBtn" onclick="pledge()">I Pledge to Be Kind &#10084;</button>
+</section>
+
+<footer>
+  <p>Be the reason someone believes in the goodness of people. &#128153;</p>
+</footer>
+
+<div class="watermark">Made by Yarken</div>
+
+<script>
+  // Floating hearts
+  const emojis = ['&#10084;', '&#128153;', '&#128155;', '&#128156;', '&#10024;'];
+  const container = document.getElementById('hearts');
+  for (let i = 0; i < 22; i++) {
+    const h = document.createElement('span');
+    h.className = 'heart';
+    h.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.animationDelay = Math.random() * 12 + 's';
+    h.style.animationDuration = (8 + Math.random() * 8) + 's';
+    h.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+    container.appendChild(h);
+  }
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Pledge counter
+  let pledged = false;
+  function pledge() {
+    if (pledged) return;
+    pledged = true;
+    const count = document.getElementById('pledge-count');
+    count.textContent = (parseInt(count.textContent.replace(/,/g, '')) + 1).toLocaleString();
+    const btn = document.getElementById('pledgeBtn');
+    btn.textContent = 'Thank you for being kind! &#10024;';
+    btn.style.background = 'var(--rose)';
+    btn.style.color = 'white';
+  }
+</script>
+</body>
+</html>
