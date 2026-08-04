@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kindness · Small Acts, Big Ripples</title>
+<title>Leppington Anglican College · Kindness in Community</title>
 <style>
   :root {
-    --bg: #fff7f2;
-    --bg2: #ffe9ef;
-    --ink: #3a2b33;
-    --rose: #ff7597;
-    --peach: #ffb08a;
-    --lilac: #b39ddb;
-    --mint: #8fd6b4;
-    --card: rgba(255,255,255,0.72);
+    --bg: #f4f8fb;
+    --bg2: #e8f0f7;
+    --ink: #1f2d3d;
+    --navy: #1b3a5b;
+    --blue: #2f6db0;
+    --sky: #6bb0e0;
+    --gold: #c9a227;
+    --card: rgba(255,255,255,0.85);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -25,27 +25,45 @@
     line-height: 1.6;
   }
 
-  /* Floating background hearts */
-  .hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-  .heart {
+  /* Floating background crests */
+  .crests { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .crest {
     position: absolute;
     bottom: -40px;
-    font-size: 1.5rem;
     opacity: 0;
-    animation: float 12s linear infinite;
+    animation: float 14s linear infinite;
+    color: var(--sky);
   }
   @keyframes float {
     0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
-    10%  { opacity: 0.7; }
-    90%  { opacity: 0.7; }
+    10%  { opacity: 0.5; }
+    90%  { opacity: 0.5; }
     100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
   }
+
+  /* Top bar */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1.5rem;
+    background: rgba(27,58,91,0.95);
+    backdrop-filter: blur(6px);
+    color: #fff;
+  }
+  .topbar .brand { font-weight: 800; letter-spacing: 0.02em; }
+  .topbar nav a { color: #cfe1f2; text-decoration: none; margin-left: 1.2rem; font-size: 0.95rem; transition: color 0.2s; }
+  .topbar nav a:hover { color: #fff; }
+  @media (max-width: 640px) { .topbar nav { display: none; } }
 
   /* Hero */
   header {
     position: relative;
     z-index: 1;
-    min-height: 90vh;
+    min-height: 82vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,10 +71,20 @@
     text-align: center;
     padding: 2rem;
   }
+  .badge {
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.1s both;
+  }
   header h1 {
-    font-size: clamp(2.6rem, 8vw, 5.5rem);
+    font-size: clamp(2.4rem, 7vw, 5rem);
     font-weight: 800;
-    background: linear-gradient(90deg, var(--rose), var(--peach), var(--lilac));
+    margin-top: 0.6rem;
+    background: linear-gradient(90deg, var(--navy), var(--blue), var(--sky));
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -65,13 +93,13 @@
   }
   @keyframes shimmer { to { background-position: 200% center; } }
   @keyframes popIn {
-    from { transform: scale(0.8); opacity: 0; }
+    from { transform: scale(0.85); opacity: 0; }
     to   { transform: scale(1); opacity: 1; }
   }
   header p {
     margin-top: 1rem;
-    font-size: clamp(1rem, 3vw, 1.4rem);
-    max-width: 600px;
+    font-size: clamp(1rem, 3vw, 1.35rem);
+    max-width: 640px;
     opacity: 0;
     animation: fadeUp 1s ease 0.4s both;
   }
@@ -80,25 +108,25 @@
     padding: 0.9rem 2.2rem;
     border: none;
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--rose), var(--peach));
+    background: linear-gradient(90deg, var(--navy), var(--blue));
     color: white;
     font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 8px 24px rgba(255,117,151,0.4);
+    box-shadow: 0 8px 24px rgba(47,109,176,0.4);
     animation: fadeUp 1s ease 0.7s both, pulse 2.5s ease-in-out 1.7s infinite;
     transition: transform 0.2s;
   }
   .cta:hover { transform: translateY(-3px) scale(1.05); }
   @keyframes pulse {
-    0%, 100% { box-shadow: 0 8px 24px rgba(255,117,151,0.4); }
-    50% { box-shadow: 0 8px 34px rgba(255,117,151,0.7); }
+    0%, 100% { box-shadow: 0 8px 24px rgba(47,109,176,0.4); }
+    50% { box-shadow: 0 8px 34px rgba(47,109,176,0.7); }
   }
   @keyframes fadeUp {
     from { transform: translateY(30px); opacity: 0; }
     to   { transform: translateY(0); opacity: 1; }
   }
-  .scroll-hint { margin-top: 3rem; font-size: 2rem; animation: bounce 2s infinite; }
+  .scroll-hint { margin-top: 3rem; font-size: 2rem; color: var(--blue); animation: bounce 2s infinite; }
   @keyframes bounce {
     0%,100% { transform: translateY(0); }
     50% { transform: translateY(12px); }
@@ -110,7 +138,7 @@
     font-size: clamp(1.8rem, 5vw, 2.8rem);
     text-align: center;
     margin-bottom: 2.5rem;
-    color: var(--rose);
+    color: var(--navy);
   }
 
   /* Reveal on scroll */
@@ -124,12 +152,13 @@
     backdrop-filter: blur(8px);
     border-radius: 20px;
     padding: 1.8rem;
-    box-shadow: 0 10px 30px rgba(180,120,140,0.15);
+    border-top: 4px solid var(--blue);
+    box-shadow: 0 10px 30px rgba(31,45,61,0.12);
     transition: transform 0.3s, box-shadow 0.3s;
   }
-  .card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(180,120,140,0.28); }
+  .card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(31,45,61,0.22); }
   .card .emoji { font-size: 2.5rem; display: block; margin-bottom: 0.7rem; }
-  .card h3 { margin-bottom: 0.5rem; }
+  .card h3 { margin-bottom: 0.5rem; color: var(--navy); }
 
   /* Quote */
   .quote {
@@ -142,24 +171,18 @@
   }
   .quote span { display: block; margin-top: 1rem; font-size: 1rem; font-style: normal; opacity: 0.7; }
 
-  /* Pledge */
-  .pledge { text-align: center; }
-  .pledge-btn {
-    margin-top: 1.5rem;
-    padding: 0.9rem 2rem;
-    border: 2px solid var(--rose);
-    border-radius: 999px;
-    background: transparent;
-    color: var(--rose);
-    font-weight: 700;
-    font-size: 1.05rem;
-    cursor: pointer;
-    transition: all 0.3s;
+  /* Values band */
+  .band {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    color: #fff;
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    text-align: center;
   }
-  .pledge-btn:hover { background: var(--rose); color: white; }
-  #pledge-count { font-weight: 800; color: var(--rose); }
+  .band .section-title { color: #fff; }
+  .band .quote { color: #eaf3fb; }
 
-  footer { text-align: center; padding: 3rem 1rem 6rem; z-index: 1; position: relative; opacity: 0.7; }
+  footer { text-align: center; padding: 3rem 1rem 6rem; z-index: 1; position: relative; opacity: 0.75; }
 
   /* Watermark */
   .watermark {
@@ -170,7 +193,7 @@
     font-size: 0.8rem;
     font-weight: 600;
     color: #fff;
-    background: linear-gradient(90deg, var(--rose), var(--lilac));
+    background: linear-gradient(90deg, var(--navy), var(--sky));
     padding: 6px 14px;
     border-radius: 999px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.18);
@@ -178,8 +201,8 @@
     animation: wmglow 3s ease-in-out infinite;
   }
   @keyframes wmglow {
-    0%,100% { box-shadow: 0 4px 14px rgba(255,117,151,0.4); }
-    50% { box-shadow: 0 4px 22px rgba(179,157,219,0.7); }
+    0%,100% { box-shadow: 0 4px 14px rgba(27,58,91,0.4); }
+    50% { box-shadow: 0 4px 22px rgba(107,176,224,0.7); }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -190,66 +213,80 @@
 </head>
 <body>
 
-<div class="hearts" id="hearts"></div>
+<div class="crests" id="crests"></div>
+
+<div class="topbar">
+  <div class="brand">Leppington Anglican College</div>
+  <nav>
+    <a href="#why">Our Values</a>
+    <a href="#acts">Kindness in Action</a>
+    <a href="#quote">Our Ethos</a>
+  </nav>
+</div>
 
 <header>
-  <h1>Kindness</h1>
-  <p>Small acts, big ripples. A little compassion can change someone's entire day &mdash; maybe even their whole life.</p>
-  <button class="cta" onclick="document.getElementById('acts').scrollIntoView()">Spread Some Kindness</button>
+  <div class="badge">Faith &middot; Learning &middot; Community</div>
+  <h1>Kindness at Leppington Anglican College</h1>
+  <p>At the heart of our College is a simple belief: how we treat one another matters. Together we grow in character, compassion, and community.</p>
+  <button class="cta" onclick="document.getElementById('acts').scrollIntoView()">See Kindness in Action</button>
   <div class="scroll-hint">&#8595;</div>
 </header>
 
 <section id="why" class="reveal">
-  <h2 class="section-title">Why Kindness Matters</h2>
+  <h2 class="section-title">Why Kindness Matters Here</h2>
   <p class="quote">
-    Kindness costs nothing, yet it's worth everything. It lowers stress, builds connection, and quietly makes the world softer for everyone in it.
+    A kind school is a strong school. When students feel valued and safe, they learn with confidence, support one another, and carry those values into the wider world.
   </p>
 </section>
 
 <section id="acts" class="reveal">
-  <h2 class="section-title">Simple Acts You Can Do Today</h2>
+  <h2 class="section-title">Kindness in Action</h2>
   <div class="grid">
-    <div class="card"><span class="emoji">&#128075;</span><h3>Say Hello</h3><p>Greet a stranger with a genuine smile. Connection starts with acknowledgement.</p></div>
-    <div class="card"><span class="emoji">&#9749;</span><h3>Buy a Coffee</h3><p>Pay it forward for the person behind you in line.</p></div>
-    <div class="card"><span class="emoji">&#128172;</span><h3>Give a Compliment</h3><p>Notice something good and say it out loud. Words carry weight.</p></div>
-    <div class="card"><span class="emoji">&#9993;</span><h3>Check In</h3><p>Text a friend you haven't spoken to in a while. Just to say you care.</p></div>
-    <div class="card"><span class="emoji">&#128218;</span><h3>Share Knowledge</h3><p>Teach someone something you know. Patience is a gift.</p></div>
-    <div class="card"><span class="emoji">&#127793;</span><h3>Help a Neighbor</h3><p>Carry a bag, hold a door, offer a hand. Small effort, big meaning.</p></div>
+    <div class="card"><span class="emoji">&#129309;</span><h3>Welcome Others</h3><p>Greet new students, include everyone, and make the playground a place where nobody stands alone.</p></div>
+    <div class="card"><span class="emoji">&#128218;</span><h3>Help a Classmate</h3><p>Share notes, explain a tricky question, and celebrate each other's progress.</p></div>
+    <div class="card"><span class="emoji">&#128172;</span><h3>Speak Encouragement</h3><p>A kind word before an exam or a game can lift a whole class.</p></div>
+    <div class="card"><span class="emoji">&#127793;</span><h3>Care for Our Campus</h3><p>Tidy shared spaces and respect the grounds we all learn in.</p></div>
+    <div class="card"><span class="emoji">&#127775;</span><h3>Serve the Community</h3><p>Join service projects and give back beyond the College gates.</p></div>
+    <div class="card"><span class="emoji">&#128591;</span><h3>Show Respect</h3><p>Listen to teachers, peers, and families with patience and grace.</p></div>
   </div>
 </section>
 
 <section id="quote" class="reveal">
+  <div class="band">
+    <h2 class="section-title">Our Ethos</h2>
+    <p class="quote">
+      &ldquo;Be kind to one another, tender-hearted, forgiving one another.&rdquo;
+      <span>&mdash; Ephesians 4:32</span>
+    </p>
+  </div>
+</section>
+
+<section id="community" class="reveal">
+  <h2 class="section-title">One College, One Community</h2>
   <p class="quote">
-    &ldquo;No act of kindness, no matter how small, is ever wasted.&rdquo;
-    <span>&mdash; Aesop</span>
+    From Kindergarten to Year 12, every member of Leppington Anglican College is called to lead with kindness &mdash; in the classroom, on the field, and in our neighbourhood.
   </p>
 </section>
 
-<section id="pledge" class="reveal pledge">
-  <h2 class="section-title">Take the Kindness Pledge</h2>
-  <p>Promise to do one kind thing today. Join <span id="pledge-count">1,024</span> others who already have.</p>
-  <button class="pledge-btn" id="pledgeBtn" onclick="pledge()">I Pledge to Be Kind &#10084;</button>
-</section>
-
 <footer>
-  <p>Be the reason someone believes in the goodness of people. &#128153;</p>
+  <p>Leppington Anglican College &middot; Growing character, compassion, and community. &#128153;</p>
 </footer>
 
 <div class="watermark">Made by Yarken</div>
 
 <script>
-  // Floating hearts
-  const emojis = ['&#10084;', '&#128153;', '&#128155;', '&#128156;', '&#10024;'];
-  const container = document.getElementById('hearts');
-  for (let i = 0; i < 22; i++) {
-    const h = document.createElement('span');
-    h.className = 'heart';
-    h.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-    h.style.left = Math.random() * 100 + 'vw';
-    h.style.animationDelay = Math.random() * 12 + 's';
-    h.style.animationDuration = (8 + Math.random() * 8) + 's';
-    h.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
-    container.appendChild(h);
+  // Floating crests / stars
+  const glyphs = ['&#10022;', '&#9733;', '&#10024;', '&#9752;'];
+  const container = document.getElementById('crests');
+  for (let i = 0; i < 20; i++) {
+    const c = document.createElement('span');
+    c.className = 'crest';
+    c.innerHTML = glyphs[Math.floor(Math.random() * glyphs.length)];
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.animationDelay = Math.random() * 14 + 's';
+    c.style.animationDuration = (10 + Math.random() * 8) + 's';
+    c.style.fontSize = (1 + Math.random() * 1.4) + 'rem';
+    container.appendChild(c);
   }
 
   // Scroll reveal
@@ -257,19 +294,6 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // Pledge counter
-  let pledged = false;
-  function pledge() {
-    if (pledged) return;
-    pledged = true;
-    const count = document.getElementById('pledge-count');
-    count.textContent = (parseInt(count.textContent.replace(/,/g, '')) + 1).toLocaleString();
-    const btn = document.getElementById('pledgeBtn');
-    btn.textContent = 'Thank you for being kind! &#10024;';
-    btn.style.background = 'var(--rose)';
-    btn.style.color = 'white';
-  }
 </script>
 </body>
 </html>
